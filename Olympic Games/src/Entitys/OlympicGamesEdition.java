@@ -9,5 +9,10 @@ package Entitys;
  * @author ventsislavlp
  */
 public class OlympicGamesEdition {
-    
+    private int ID;
+    private String Year_of_conduction;
+    private int City;
+    private int Type;
+    private String Date_of_Start;
+    private String Date_of_End;
 }
