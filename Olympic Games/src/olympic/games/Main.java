@@ -8,7 +8,7 @@ package olympic.games;
  *
  * @author ventsislavlp
  */
-public class OlympicGames {
+public class Main {
 
     /**
      * @param args the command line arguments
