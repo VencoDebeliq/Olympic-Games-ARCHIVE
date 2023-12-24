@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entitys;
-
+import Code.Regex;
 /**
  *
  * @author ventsislavlp
@@ -39,9 +39,10 @@ public class Competitor {
     }
 
     public void setDate_of_birth(String Date_of_birth) {
-        this.Date_of_birth = Date_of_birth;
+        if(Regex.regex(Date_of_birth))
+            this.Date_of_birth = Date_of_birth;
     }
-    //regex nqkoga
+    
     public int getID() {
         return ID;
     }
