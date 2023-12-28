@@ -6,17 +6,17 @@ package Forms;
 import Code.btnWork;
 /**
  *
- * @author v_pai
+ * @author user
  */
-public class Choice extends javax.swing.JFrame {
+public class ArchiveInfo extends javax.swing.JFrame {
 
     /**
-     * Creates new form Choice
+     * Creates new form ArchiveInfo
      */
-    public Choice() {
+    public ArchiveInfo() {
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Choice");
+        setTitle("Information");
         setResizable(false);
     }
 
@@ -29,60 +29,49 @@ public class Choice extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel4 = new javax.swing.JPanel();
         pnl1 = new javax.swing.JPanel();
         pnlLeft = new javax.swing.JPanel();
-        btnNewCompetitor = new javax.swing.JButton();
-        btnNewMedalists = new javax.swing.JButton();
-        btnNewRecord = new javax.swing.JButton();
+        btnMedInDisc = new javax.swing.JButton();
+        btnRecInDisc = new javax.swing.JButton();
+        btnRecInYear = new javax.swing.JButton();
         pnlRight = new javax.swing.JPanel();
-        btnOpenReport = new javax.swing.JButton();
-        btnDeleteCompetitor = new javax.swing.JButton();
-        btnArchiveInfo1 = new javax.swing.JButton();
+        btnMedInYear = new javax.swing.JButton();
+        btnCompInDisc = new javax.swing.JButton();
+        btnCompWithNatio = new javax.swing.JButton();
         pnlBack = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnl1.setBackground(new java.awt.Color(254, 255, 228));
 
         pnlLeft.setBackground(new java.awt.Color(255, 255, 102));
+        pnlLeft.setPreferredSize(new java.awt.Dimension(302, 156));
 
-        btnNewCompetitor.setBackground(new java.awt.Color(251, 255, 159));
-        btnNewCompetitor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnNewCompetitor.setText("Add new medalists");
-        btnNewCompetitor.addActionListener(new java.awt.event.ActionListener() {
+        btnMedInDisc.setBackground(new java.awt.Color(251, 255, 159));
+        btnMedInDisc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnMedInDisc.setText("Get medalists in a discipline");
+        btnMedInDisc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewCompetitorActionPerformed(evt);
+                btnMedInDiscActionPerformed(evt);
             }
         });
 
-        btnNewMedalists.setBackground(new java.awt.Color(251, 255, 159));
-        btnNewMedalists.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnNewMedalists.setText("Add new competitor");
-        btnNewMedalists.addActionListener(new java.awt.event.ActionListener() {
+        btnRecInDisc.setBackground(new java.awt.Color(251, 255, 159));
+        btnRecInDisc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnRecInDisc.setText("Get record in a discipline");
+        btnRecInDisc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewMedalistsActionPerformed(evt);
+                btnRecInDiscActionPerformed(evt);
             }
         });
 
-        btnNewRecord.setBackground(new java.awt.Color(251, 255, 159));
-        btnNewRecord.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnNewRecord.setText("Update record");
-        btnNewRecord.addActionListener(new java.awt.event.ActionListener() {
+        btnRecInYear.setBackground(new java.awt.Color(251, 255, 159));
+        btnRecInYear.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnRecInYear.setText("Get record in an year");
+        btnRecInYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewRecordActionPerformed(evt);
+                btnRecInYearActionPerformed(evt);
             }
         });
 
@@ -93,41 +82,36 @@ public class Choice extends javax.swing.JFrame {
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNewRecord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNewCompetitor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNewMedalists, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+                    .addComponent(btnRecInYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMedInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(btnRecInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNewMedalists, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRecInDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNewCompetitor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMedInDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNewRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRecInYear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
         pnlRight.setBackground(new java.awt.Color(255, 255, 102));
 
-        btnOpenReport.setBackground(new java.awt.Color(251, 255, 159));
-        btnOpenReport.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnOpenReport.setText("Open report");
+        btnMedInYear.setBackground(new java.awt.Color(251, 255, 159));
+        btnMedInYear.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnMedInYear.setText("Get medalists in an year");
 
-        btnDeleteCompetitor.setBackground(new java.awt.Color(251, 255, 159));
-        btnDeleteCompetitor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnDeleteCompetitor.setText("Delete Competitor");
+        btnCompInDisc.setBackground(new java.awt.Color(251, 255, 159));
+        btnCompInDisc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnCompInDisc.setText("Get competitors in a discipline");
 
-        btnArchiveInfo1.setBackground(new java.awt.Color(251, 255, 159));
-        btnArchiveInfo1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnArchiveInfo1.setText("Arfchive info");
-        btnArchiveInfo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnArchiveInfo1ActionPerformed(evt);
-            }
-        });
+        btnCompWithNatio.setBackground(new java.awt.Color(251, 255, 159));
+        btnCompWithNatio.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnCompWithNatio.setText("Get competitors with a nationality");
 
         javax.swing.GroupLayout pnlRightLayout = new javax.swing.GroupLayout(pnlRight);
         pnlRight.setLayout(pnlRightLayout);
@@ -136,20 +120,20 @@ public class Choice extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRightLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnArchiveInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnOpenReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteCompetitor, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                    .addComponent(btnCompWithNatio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMedInYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCompInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlRightLayout.setVerticalGroup(
             pnlRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRightLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(btnOpenReport, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMedInYear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeleteCompetitor, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(btnCompInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnArchiveInfo1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCompWithNatio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -184,9 +168,9 @@ public class Choice extends javax.swing.JFrame {
             .addGroup(pnl1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlRight, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(pnlRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(pnl1Layout.createSequentialGroup()
                 .addComponent(pnlBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -198,7 +182,7 @@ public class Choice extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                 .addGap(129, 129, 129))
         );
 
@@ -210,41 +194,38 @@ public class Choice extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMedInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedInDiscActionPerformed
+        
+    }//GEN-LAST:event_btnMedInDiscActionPerformed
+
+    private void btnRecInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecInDiscActionPerformed
+        
+    }//GEN-LAST:event_btnRecInDiscActionPerformed
+
+    private void btnRecInYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecInYearActionPerformed
+        
+    }//GEN-LAST:event_btnRecInYearActionPerformed
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        btnWork.btn(new EntryPage(), this);
+        btnWork.btn(new Choice(), this);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnNewMedalistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMedalistsActionPerformed
-        btnWork.btn(new NewCompetitor(), this);
-    }//GEN-LAST:event_btnNewMedalistsActionPerformed
-
-    private void btnNewCompetitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCompetitorActionPerformed
-        btnWork.btn(new NewMedalists(), this);
-    }//GEN-LAST:event_btnNewCompetitorActionPerformed
-
-    private void btnNewRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewRecordActionPerformed
-        btnWork.btn(new NewReocrd(), this);
-    }//GEN-LAST:event_btnNewRecordActionPerformed
-
-    private void btnArchiveInfo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchiveInfo1ActionPerformed
-        btnWork.btn(new ArchiveInfo(), this);
-    }//GEN-LAST:event_btnArchiveInfo1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnArchiveInfo1;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnDeleteCompetitor;
-    private javax.swing.JButton btnNewCompetitor;
-    private javax.swing.JButton btnNewMedalists;
-    private javax.swing.JButton btnNewRecord;
-    private javax.swing.JButton btnOpenReport;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton btnCompInDisc;
+    private javax.swing.JButton btnCompWithNatio;
+    private javax.swing.JButton btnMedInDisc;
+    private javax.swing.JButton btnMedInYear;
+    private javax.swing.JButton btnRecInDisc;
+    private javax.swing.JButton btnRecInYear;
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnlBack;
     private javax.swing.JPanel pnlLeft;

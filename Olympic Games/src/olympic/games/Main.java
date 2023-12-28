@@ -8,13 +8,13 @@ import Forms.EntryPage;
  *
  * @author ventsislavlp
  */
-public class Main {
+public class Main extends EntryPage{
 
     /**
      * @param args the command line arguments
      */
-    //public static void main(String[] args) {
-        // TODO code application logic here
-    //}
+    public static void main(String[] args) {
+        Run();
+    }
     
 }
