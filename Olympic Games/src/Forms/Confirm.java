@@ -4,6 +4,7 @@
  */
 package Forms;
 import Code.btnWork;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 /**
  *
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
  */
 public class Confirm extends javax.swing.JFrame {
     private JFrame previousPage;
+    private JButton btnSave;
     /**
      * Creates new form Confirm
      */
@@ -23,12 +25,22 @@ public class Confirm extends javax.swing.JFrame {
         return previousPage;
     }
 
-    public Confirm(JFrame previousPage) {
+    public void setBtnSave(JButton btnSave) {
+        this.btnSave = btnSave;
+    }
+
+    public JButton getBtnSave() {
+        return btnSave;
+    }
+
+    public Confirm(JFrame previousPage, JButton save) {
         initComponents();
         setPreviousPage(previousPage);
         setLocationRelativeTo(null);
         setTitle("Confirm");
         setResizable(false);
+        setBtnSave(save);
+        btnSave.setEnabled(false);
     }
 
     /**
@@ -116,6 +128,7 @@ public class Confirm extends javax.swing.JFrame {
 
     private void btnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoActionPerformed
         this.setVisible(false);
+        btnSave.setEnabled(true);
     }//GEN-LAST:event_btnNoActionPerformed
 
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
