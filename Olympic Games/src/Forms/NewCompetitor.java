@@ -221,8 +221,9 @@ public class NewCompetitor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Confirm openPageConfirm = new Confirm(this);
+        Confirm openPageConfirm = new Confirm(this, btnSave);
         openPageConfirm.setVisible(true);
+        btnSave.setEnabled(false);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
