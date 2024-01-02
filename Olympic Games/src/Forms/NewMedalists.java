@@ -5,6 +5,7 @@
 package Forms;
 import Code.Queries;
 import Code.btnWork;
+import javax.swing.JComboBox;
 /**
  *
  * @author v_pai
@@ -228,12 +229,20 @@ public class NewMedalists extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
-        Queries query = new Queries();
+        String q = "INSERT INTO Medal_Winners ( Competitor_ID, Olympic_Games_ID, Discipline_ID, Medal_Type_ID, Description )\n" +
+                    "VALUES("
+                + txtCompID.getText() + ", "
+                + txtOGID.getText() + ", "
+                + txtDiscID.getText() + ", "
+                + (jComboBox1.getSelectedIndex() + 1) + ", "
+                + "\"" + txtDesc.getText() + "\");";
+        System.out.println(q);
+        Queries query = new Queries(q);
         Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
         openPageConfirm.setVisible(true);
         btnSaveMedals.setEnabled(false);
     }//GEN-LAST:event_btnSaveMedalsActionPerformed
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveMedals;

@@ -227,7 +227,7 @@ public class NewCompetitor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality)"
+        String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality)\n"
                 + "VALUES("
                 + "\"" + txtFirstName.getText() + "\", " 
                 + "\"" + txtLastName.getText() + "\", "
