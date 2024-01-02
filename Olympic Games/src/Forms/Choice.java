@@ -119,6 +119,11 @@ public class Choice extends javax.swing.JFrame {
         btnDeleteCompetitor.setBackground(new java.awt.Color(251, 255, 159));
         btnDeleteCompetitor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDeleteCompetitor.setText("Delete Competitor");
+        btnDeleteCompetitor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCompetitorActionPerformed(evt);
+            }
+        });
 
         btnArchiveInfo1.setBackground(new java.awt.Color(251, 255, 159));
         btnArchiveInfo1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -235,6 +240,10 @@ public class Choice extends javax.swing.JFrame {
     private void btnArchiveInfo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchiveInfo1ActionPerformed
         btnWork.btn(new ArchiveInfo(), this);
     }//GEN-LAST:event_btnArchiveInfo1ActionPerformed
+
+    private void btnDeleteCompetitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCompetitorActionPerformed
+        btnWork.btn(new DeleteCommpetitor(), this);
+    }//GEN-LAST:event_btnDeleteCompetitorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArchiveInfo1;

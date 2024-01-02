@@ -229,6 +229,7 @@ public class NewMedalists extends javax.swing.JFrame {
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
         Confirm openPageConfirm = new Confirm(this, btnSaveMedals);
         openPageConfirm.setVisible(true);
+        btnSaveMedals.setEnabled(false);
     }//GEN-LAST:event_btnSaveMedalsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

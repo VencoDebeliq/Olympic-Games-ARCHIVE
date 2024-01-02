@@ -4,20 +4,19 @@
  */
 package Forms;
 import Code.btnWork;
-
 /**
  *
- * @author v_pai
+ * @author user
  */
-public class NewReocrd extends javax.swing.JFrame {
+public class DeleteCommpetitor extends javax.swing.JFrame {
 
     /**
-     * Creates new form NewReocrd
+     * Creates new form DeleteCommpetitor
      */
-    public NewReocrd() {
+    public DeleteCommpetitor() {
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Update record");
+        setTitle("Delete medalist");
         setResizable(false);
     }
 
@@ -35,13 +34,9 @@ public class NewReocrd extends javax.swing.JFrame {
         pnl2 = new javax.swing.JPanel();
         lblCompID = new javax.swing.JLabel();
         lblOGID = new javax.swing.JLabel();
-        lblDisc = new javax.swing.JLabel();
-        lblDescr = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
         txtCompID = new javax.swing.JTextField();
         txtOGID = new javax.swing.JTextField();
-        txtDiscID = new javax.swing.JTextField();
-        txtDesc = new javax.swing.JTextField();
         btnSaveMedals = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,16 +64,6 @@ public class NewReocrd extends javax.swing.JFrame {
         lblOGID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblOGID.setText("Olympic games");
 
-        lblDisc.setBackground(new java.awt.Color(255, 255, 102));
-        lblDisc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblDisc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDisc.setText("Discipline");
-
-        lblDescr.setBackground(new java.awt.Color(255, 255, 102));
-        lblDescr.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lblDescr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDescr.setText("Description");
-
         pnlButtons.setBackground(new java.awt.Color(255, 255, 102));
 
         txtCompID.setBackground(new java.awt.Color(254, 255, 228));
@@ -89,43 +74,30 @@ public class NewReocrd extends javax.swing.JFrame {
         txtOGID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtOGID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtDiscID.setBackground(new java.awt.Color(254, 255, 228));
-        txtDiscID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtDiscID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        txtDesc.setBackground(new java.awt.Color(254, 255, 228));
-        txtDesc.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
         pnlButtonsLayout.setHorizontalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCompID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDiscID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtOGID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCompID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(txtOGID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(txtCompID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtOGID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDiscID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnSaveMedals.setBackground(new java.awt.Color(254, 255, 228));
         btnSaveMedals.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnSaveMedals.setText("Save");
+        btnSaveMedals.setText("Delete");
         btnSaveMedals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveMedalsActionPerformed(evt);
@@ -142,9 +114,7 @@ public class NewReocrd extends javax.swing.JFrame {
                     .addGroup(pnl2Layout.createSequentialGroup()
                         .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCompID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblOGID, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(lblDisc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDescr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblOGID, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
@@ -159,13 +129,9 @@ public class NewReocrd extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblCompID)
                         .addGap(18, 18, 18)
-                        .addComponent(lblOGID)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblDisc)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblDescr))
+                        .addComponent(lblOGID))
                     .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSaveMedals))
         );
 
@@ -174,24 +140,20 @@ public class NewReocrd extends javax.swing.JFrame {
         pnl1Layout.setHorizontalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl1Layout.createSequentialGroup()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(360, Short.MAX_VALUE))
-            .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl1Layout.createSequentialGroup()
-                    .addGap(17, 17, 17)
-                    .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(17, Short.MAX_VALUE)))
+                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl1Layout.createSequentialGroup()
                 .addComponent(btnBack)
-                .addGap(0, 212, Short.MAX_VALUE))
-            .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl1Layout.createSequentialGroup()
-                    .addGap(31, 31, 31)
-                    .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -199,8 +161,8 @@ public class NewReocrd extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(pnl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,15 +186,11 @@ public class NewReocrd extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveMedals;
     private javax.swing.JLabel lblCompID;
-    private javax.swing.JLabel lblDescr;
-    private javax.swing.JLabel lblDisc;
     private javax.swing.JLabel lblOGID;
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JTextField txtCompID;
-    private javax.swing.JTextField txtDesc;
-    private javax.swing.JTextField txtDiscID;
     private javax.swing.JTextField txtOGID;
     // End of variables declaration//GEN-END:variables
 }
