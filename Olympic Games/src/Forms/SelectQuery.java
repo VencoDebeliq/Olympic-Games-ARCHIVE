@@ -3,21 +3,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Forms;
+import Code.Queries;
 import Code.btnWork;
+import java.util.ArrayList;
+import java.sql.*;
 /**
  *
  * @author user
  */
 public class SelectQuery extends javax.swing.JFrame {
 
+    private int query;
+
+    public void setQuery(int query) {
+        this.query = query;
+    }
+
+    public int getQuery() {
+        return query;
+    }
     /**
      * Creates new form SelectQuery
      */
-    public SelectQuery() {
+    public SelectQuery(ArrayList <String> items, int query) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Select");
         setResizable(false);
+        cbbChoose.removeAllItems();
+        for (int i = 0; i < items.size(); ++i)
+        {
+            cbbChoose.addItem(items.get(i));
+        }
+        setQuery(query);
     }
 
     /**
@@ -32,7 +50,7 @@ public class SelectQuery extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblSure = new javax.swing.JLabel();
-        cbbChosoe = new javax.swing.JComboBox<>();
+        cbbChoose = new javax.swing.JComboBox<>();
         btnBack5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -49,9 +67,14 @@ public class SelectQuery extends javax.swing.JFrame {
         lblSure.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSure.setText("Choose");
 
-        cbbChosoe.setBackground(new java.awt.Color(254, 255, 228));
-        cbbChosoe.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        cbbChosoe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbChoose.setBackground(new java.awt.Color(254, 255, 228));
+        cbbChoose.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbbChoose.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbChooseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -60,7 +83,7 @@ public class SelectQuery extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(lblSure, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbbChosoe, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -69,7 +92,7 @@ public class SelectQuery extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSure)
-                    .addComponent(cbbChosoe, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -129,17 +152,126 @@ public class SelectQuery extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack5ActionPerformed
-        btnWork.btn(new EntryPage(), this);
+        btnWork.btn(new ArchiveInfo(), this);
     }//GEN-LAST:event_btnBack5ActionPerformed
 
+    private void cbbChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbChooseActionPerformed
+        jTextArea1.setText("");
+        if (getQuery() == 1)
+        {
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Record.Description, Olympic_Games.Year_of_conduction\n" +
+"FROM Olympic_Games INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Record ON Competitor.ID = Record.Competitor_ID) ON Discipline.ID = Record.Discipline) ON Olympic_Games.ID = Record.Olympic_Games_ID\n" +
+"WHERE (((Discipline.Discipline_Name) Like \"" + cbbChoose.getSelectedItem() + "\"));";
+            ResultSet rs = new Queries(q).execute();
+            try
+            {
+                while (rs.next())
+                {
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + ", " + rs.getString("Description") + '\n');
+                }
+            }
+            catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+            }
+        }
+        else if (getQuery() == 2)
+        {
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name\n" +
+"FROM Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID\n" +
+"WHERE (((Discipline.Discipline_Name) Like " + "\"" + cbbChoose.getSelectedItem() + "\"));";
+            ResultSet rs = new Queries(q).execute();
+            try
+            {
+                while (rs.next())
+                {
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
+                }
+            }
+            catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+            }
+        }
+        else if (getQuery() == 3)
+        {
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Olympic_Games.Year_of_conduction, Record.Description\n" +
+"FROM Olympic_Games INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Record ON Competitor.ID = Record.Competitor_ID) ON Discipline.ID = Record.Discipline) ON Olympic_Games.ID = Record.Olympic_Games_ID\n" +
+"WHERE (((Olympic_Games.Year_of_conduction)=" + cbbChoose.getSelectedItem() + "));";
+            ResultSet rs = new Queries(q).execute();
+            try
+            {
+                while (rs.next())
+                {
+                    jTextArea1.append(rs.getString("Discipline_Name") + ", " + rs.getString("First_Name") + " " + rs.getString("Last_Name") + ", " + rs.getString("Description") + '\n');
+                }
+            }
+            catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+            }
+        }
+        else if (getQuery() == 4)
+        {
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Medal_Winners.Description, Medal_Type.Type_Name, Olympic_Games.Year_of_conduction\n" +
+"FROM Medal_Type INNER JOIN (Discipline INNER JOIN (Olympic_Games INNER JOIN (Competitor INNER JOIN Medal_Winners ON Competitor.ID = Medal_Winners.Competitor_ID) ON Olympic_Games.ID = Medal_Winners.Olympic_Games_ID) ON Discipline.ID = Medal_Winners.Discipline_ID) ON Medal_Type.ID = Medal_Winners.Medal_Type_ID\n" +
+"WHERE (((Olympic_Games.Year_of_conduction)=" + cbbChoose.getSelectedItem() + "));";
+            ResultSet rs = new Queries(q).execute();
+            try
+            {
+                while (rs.next())
+                {
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
+                }
+            }
+            catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+            }
+        }
+        else if (getQuery() == 5)
+        {
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name\n" +
+"FROM Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID\n" +
+"WHERE (((Discipline.Discipline_Name) Like \"" + cbbChoose.getSelectedItem() +"\"));";
+            ResultSet rs = new Queries(q).execute();
+            try
+            {
+                while (rs.next())
+                {
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
+                }
+            }
+            catch (Exception ex)
+            {
+                System.err.println(ex.getMessage());
+            }
+        }
+        else if (getQuery() == 6)
+        {
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Nationality.Nationality_Name AS Израз1, Discipline.Discipline_Name\n" +
+"FROM Nationality INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID) ON Nationality.ID = Competitor.Nationality\n" +
+"WHERE ((([Nationality].[Nationality_Name]) Like \"" + cbbChoose.getSelectedItem() + "\" ));";
+            
+            ResultSet rs = new Queries(q).execute();
+            try
+            {
+                while (rs.next())
+                {
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
+                }
+            }
+            catch (Exception ex)
+            {
+                System.out.println("here");
+                System.err.println(ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_cbbChooseActionPerformed
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnBack2;
-    private javax.swing.JButton btnBack3;
-    private javax.swing.JButton btnBack4;
     private javax.swing.JButton btnBack5;
-    private javax.swing.JComboBox<String> cbbChosoe;
+    private javax.swing.JComboBox<String> cbbChoose;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

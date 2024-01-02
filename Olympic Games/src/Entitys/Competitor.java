@@ -82,29 +82,37 @@ public class Competitor {
         this(0, "", "", 1, 1, "01.01.1900");
     }
     
-    public static ArrayList <Competitor> getAllCompetitors()
+    @Override
+    public String toString()
     {
-        ArrayList <Competitor> ans;
+        return String.format("%d %s %s %d %d", getID(), getFirst_Name(), getLast_Name(), getSex(), getNationality());
+    }
+    
+    public static ArrayList <Competitor> getAll()
+    {
+        ArrayList <Competitor> ans = new ArrayList <>();
         try
         {
             Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM Olympic_Games");
-            int ct = 0;
+            ResultSet rs = s.executeQuery("SELECT * FROM Competitor");
             while (rs.next())
             {
-                ct++;
-                System.out.println(rs.getString(1) + " " + rs.getString(2) + '\n');
+                Competitor c = new Competitor();
+                c.setID(rs.getInt("ID"));
+                c.setFirst_Name(rs.getString("First_Name"));
+                c.setLast_Name(rs.getString("Last_Name"));
+                c.setSex(rs.getInt("Sex"));
+                c.setNationality(rs.getInt("Nationality"));
+                ans.add(c);
             }
-            System.out.println(ct);
             conn.close();
         }
         catch (Exception e)
         {
-            
             System.err.println(e.getMessage());
         }
         
-        return null;
+        return ans;
     }
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Forms;
+import Code.Queries;
 import Code.btnWork;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,9 +14,15 @@ import javax.swing.JFrame;
 public class Confirm extends javax.swing.JFrame {
     private JFrame previousPage;
     private JButton btnSave;
-    /**
-     * Creates new form Confirm
-     */
+    private Queries query;
+
+    public void setQuery(Queries query) {
+        this.query = query;
+    }
+
+    public Queries getQuery() {
+        return query;
+    }
 
     public void setPreviousPage(JFrame previousPage) {
         this.previousPage = previousPage;
@@ -33,13 +40,14 @@ public class Confirm extends javax.swing.JFrame {
         return btnSave;
     }
 
-    public Confirm(JFrame previousPage, JButton save) {
+    public Confirm(JFrame previousPage, JButton save, Queries query) {
         initComponents();
         setPreviousPage(previousPage);
         setLocationRelativeTo(null);
         setTitle("Confirm");
         setResizable(false);
         setBtnSave(save);
+        setQuery(query);
         btnSave.setEnabled(false);
     }
 
@@ -132,8 +140,9 @@ public class Confirm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNoActionPerformed
 
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
-        btnWork.btn(new Choice(),getPreviousPage());
+        btnWork.btn(new Choice(), getPreviousPage());
         this.setVisible(false);
+        getQuery().execute();
     }//GEN-LAST:event_btnYesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

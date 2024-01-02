@@ -94,7 +94,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblSure" min="-2" pref="148" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cbbChosoe" min="-2" pref="196" max="-2" attributes="0"/>
+                      <Component id="cbbChoose" min="-2" pref="196" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -105,7 +105,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblSure" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbbChosoe" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="cbbChoose" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
@@ -125,7 +125,7 @@
                 <Property name="text" type="java.lang.String" value="Choose"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbbChosoe">
+            <Component class="javax.swing.JComboBox" name="cbbChoose">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e4" green="ff" red="fe" type="rgb"/>
@@ -142,6 +142,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbChooseActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

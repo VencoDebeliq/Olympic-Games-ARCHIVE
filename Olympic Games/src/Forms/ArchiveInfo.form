@@ -203,6 +203,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Get medalists in an year"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMedInYearActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCompInDisc">
               <Properties>
@@ -228,6 +231,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Get competitors with a nationality"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompWithNatioActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

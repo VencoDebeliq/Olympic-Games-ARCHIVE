@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Forms;
+import Code.Queries;
 import Code.btnWork;
 /**
  *
@@ -177,7 +178,8 @@ public class DeleteCommpetitor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
-        Confirm openPageConfirm = new Confirm(this, btnSaveMedals);
+        Queries query = new Queries();
+        Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
         openPageConfirm.setVisible(true);
         btnSaveMedals.setEnabled(false);
     }//GEN-LAST:event_btnSaveMedalsActionPerformed

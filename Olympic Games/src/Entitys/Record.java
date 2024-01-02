@@ -4,6 +4,12 @@
  */
 package Entitys;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author v_pai
@@ -68,5 +74,33 @@ public class Record {
     
     public Record(){
         this(1, 0, 37, 1, "");
+    }
+    
+    public static ArrayList <Record> getAll()
+    {
+        ArrayList <Record> ans = new ArrayList <>();
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM Record");
+            while (rs.next())
+            {
+                Record c = new Record();
+                c.setID(rs.getInt("ID"));
+                c.setCompetitorID(rs.getInt("Competitor_ID"));
+                c.setDiscipline(rs.getInt("Discipline"));
+                c.setOlympicgamesID(rs.getInt("Olympic_Games_ID"));
+                c.setDescription(rs.getString("Description"));
+                ans.add(c);
+            }
+            conn.close();
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        return ans;
     }
 }

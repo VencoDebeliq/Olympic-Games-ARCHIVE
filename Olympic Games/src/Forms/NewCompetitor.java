@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Forms;
+import Code.Queries;
 import Code.btnWork;
 /**
  *
@@ -85,6 +86,11 @@ public class NewCompetitor extends javax.swing.JFrame {
         txtFirstName.setBackground(new java.awt.Color(254, 255, 228));
         txtFirstName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtFirstName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFirstNameActionPerformed(evt);
+            }
+        });
 
         txtLastName.setBackground(new java.awt.Color(254, 255, 228));
         txtLastName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -221,10 +227,24 @@ public class NewCompetitor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Confirm openPageConfirm = new Confirm(this, btnSave);
+        String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality)"
+                + "VALUES("
+                + "\"" + txtFirstName.getText() + "\", " 
+                + "\"" + txtLastName.getText() + "\", "
+                + txtSex.getText() + ", " 
+                + txtNationality.getText()
+                + ");";
+        
+        Queries query = new Queries(q);
+        System.out.println(query);
+        Confirm openPageConfirm = new Confirm(this, btnSave, query);
         openPageConfirm.setVisible(true);
         btnSave.setEnabled(false);
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

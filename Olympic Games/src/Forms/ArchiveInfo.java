@@ -4,7 +4,10 @@
  */
 package Forms;
 import Code.btnWork;
-import Entitys.Competitor;
+import Entitys.OlympicGamesEdition;
+import java.util.ArrayList;
+import java.sql.*;
+import java.util.Collections;
 /**
  *
  * @author user
@@ -105,6 +108,11 @@ public class ArchiveInfo extends javax.swing.JFrame {
         btnMedInYear.setBackground(new java.awt.Color(251, 255, 159));
         btnMedInYear.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnMedInYear.setText("Get medalists in an year");
+        btnMedInYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedInYearActionPerformed(evt);
+            }
+        });
 
         btnCompInDisc.setBackground(new java.awt.Color(251, 255, 159));
         btnCompInDisc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -118,6 +126,11 @@ public class ArchiveInfo extends javax.swing.JFrame {
         btnCompWithNatio.setBackground(new java.awt.Color(251, 255, 159));
         btnCompWithNatio.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCompWithNatio.setText("Get competitors with a nationality");
+        btnCompWithNatio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompWithNatioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlRightLayout = new javax.swing.GroupLayout(pnlRight);
         pnlRight.setLayout(pnlRightLayout);
@@ -209,15 +222,59 @@ public class ArchiveInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMedInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedInDiscActionPerformed
-        
+        this.setVisible(false);
+        ArrayList <String> items = new ArrayList<> ();
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
+            while (rs.next())
+            {
+                items.add(rs.getString(1));
+            }
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        String sql = "";
+        new SelectQuery(items, 2).setVisible(true);
     }//GEN-LAST:event_btnMedInDiscActionPerformed
 
     private void btnRecInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecInDiscActionPerformed
-        
+        this.setVisible(false);
+        ArrayList <String> items = new ArrayList<> ();
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
+            while (rs.next())
+            {
+                items.add(rs.getString(1));
+            }
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        String sql = "";
+        new SelectQuery(items, 1).setVisible(true);
     }//GEN-LAST:event_btnRecInDiscActionPerformed
 
     private void btnRecInYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecInYearActionPerformed
-        
+        this.setVisible(false);
+        ArrayList <String> items = new ArrayList <>();
+        for (OlympicGamesEdition a: OlympicGamesEdition.getAll())
+        {
+            if (!items.contains(a.getYear_of_conduction()))
+                items.add(Integer.toString(a.getYear_of_conduction()));
+        }
+        Collections.sort(items);
+        new SelectQuery(items, 3).setVisible(true);
     }//GEN-LAST:event_btnRecInYearActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -225,8 +282,60 @@ public class ArchiveInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompInDiscActionPerformed
-        Competitor.getAllCompetitors();
+        this.setVisible(false);
+        ArrayList <String> items = new ArrayList<> ();
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
+            while (rs.next())
+            {
+                items.add(rs.getString(1));
+            }
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        String sql = "";
+        new SelectQuery(items, 5).setVisible(true);
     }//GEN-LAST:event_btnCompInDiscActionPerformed
+
+    private void btnMedInYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedInYearActionPerformed
+        this.setVisible(false);
+        ArrayList <String> items = new ArrayList <>();
+        for (OlympicGamesEdition a: OlympicGamesEdition.getAll())
+        {
+            if (!items.contains(a.getYear_of_conduction()))
+                items.add(Integer.toString(a.getYear_of_conduction()));
+        }
+        Collections.sort(items);
+        new SelectQuery(items, 4).setVisible(true);
+    }//GEN-LAST:event_btnMedInYearActionPerformed
+
+    private void btnCompWithNatioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompWithNatioActionPerformed
+        this.setVisible(false);
+        ArrayList <String> items = new ArrayList<> ();
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("SELECT Nationality_Name FROM Nationality");
+            while (rs.next())
+            {
+                items.add(rs.getString(1));
+            }
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+        String sql = "";
+        new SelectQuery(items, 6).setVisible(true);
+    }//GEN-LAST:event_btnCompWithNatioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
