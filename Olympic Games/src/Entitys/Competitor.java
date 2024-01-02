@@ -97,6 +97,7 @@ public class Competitor {
                 System.out.println(rs.getString(1) + " " + rs.getString(2) + '\n');
             }
             System.out.println(ct);
+            conn.close();
         }
         catch (Exception e)
         {
