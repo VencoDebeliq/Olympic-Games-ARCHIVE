@@ -4,6 +4,7 @@
  */
 package Forms;
 import Code.btnWork;
+import Entitys.Competitor;
 /**
  *
  * @author user
@@ -83,7 +84,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRecInYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMedInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                    .addComponent(btnMedInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                     .addComponent(btnRecInDisc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -108,6 +109,11 @@ public class ArchiveInfo extends javax.swing.JFrame {
         btnCompInDisc.setBackground(new java.awt.Color(251, 255, 159));
         btnCompInDisc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCompInDisc.setText("Get competitors in a discipline");
+        btnCompInDisc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompInDiscActionPerformed(evt);
+            }
+        });
 
         btnCompWithNatio.setBackground(new java.awt.Color(251, 255, 159));
         btnCompWithNatio.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -217,6 +223,10 @@ public class ArchiveInfo extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         btnWork.btn(new Choice(), this);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCompInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompInDiscActionPerformed
+        Competitor.getAllCompetitors();
+    }//GEN-LAST:event_btnCompInDiscActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
