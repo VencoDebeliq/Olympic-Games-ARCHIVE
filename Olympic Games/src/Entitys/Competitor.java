@@ -87,14 +87,14 @@ public class Competitor {
         ArrayList <Competitor> ans;
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\Ventsislav Peychev\\Documents\\programming\\Olympic-Games-ARCHIVE\\Olympic Games\\Datebase\\Archive.accdb");
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
             Statement s = conn.createStatement();
             ResultSet rs = s.executeQuery("SELECT * FROM Olympic_Games");
             int ct = 0;
             while (rs.next())
             {
                 ct++;
-                System.out.println(rs.getString(0) + " " + rs.getString(1) + " " + rs.getString(2) + '\n');
+                System.out.println(rs.getString(1) + " " + rs.getString(2) + '\n');
             }
             System.out.println(ct);
         }
