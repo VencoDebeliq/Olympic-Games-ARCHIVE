@@ -4,7 +4,7 @@
  */
 package Forms;
 import Code.Queries;
-import Code.btnWork;
+import Code.Operations;
 import java.util.ArrayList;
 import java.sql.*;
 /**
@@ -152,7 +152,7 @@ public class SelectQuery extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack5ActionPerformed
-        btnWork.btn(new ArchiveInfo(), this);
+        Operations.btn(new ArchiveInfo(), this);
     }//GEN-LAST:event_btnBack5ActionPerformed
 
     private void cbbChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbChooseActionPerformed

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Forms;
-import Code.btnWork;
+import Code.Operations;
 import Entitys.OlympicGamesEdition;
 import java.util.ArrayList;
 import java.sql.*;
@@ -226,14 +226,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
         ArrayList <String> items = new ArrayList<> ();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
-            while (rs.next())
-            {
-                items.add(rs.getString(1));
-            }
-            conn.close();
+            items = Operations.generateDiscipline();
         }
         catch (Exception ex)
         {
@@ -248,14 +241,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
         ArrayList <String> items = new ArrayList<> ();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
-            while (rs.next())
-            {
-                items.add(rs.getString(1));
-            }
-            conn.close();
+            items = Operations.generateDiscipline();
         }
         catch (Exception ex)
         {
@@ -278,7 +264,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRecInYearActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        btnWork.btn(new Choice(), this);
+        Operations.btn(new Choice(), this);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCompInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompInDiscActionPerformed
@@ -286,14 +272,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
         ArrayList <String> items = new ArrayList<> ();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
-            while (rs.next())
-            {
-                items.add(rs.getString(1));
-            }
-            conn.close();
+            items = Operations.generateDiscipline();
         }
         catch (Exception ex)
         {
@@ -320,14 +299,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
         ArrayList <String> items = new ArrayList<> ();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT Nationality_Name FROM Nationality");
-            while (rs.next())
-            {
-                items.add(rs.getString(1));
-            }
-            conn.close();
+            items = Operations.generateNationality();
         }
         catch (Exception ex)
         {

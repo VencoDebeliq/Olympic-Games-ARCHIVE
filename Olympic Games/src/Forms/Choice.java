@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Forms;
-import Code.btnWork;
+import Code.Operations;
 /**
  *
  * @author v_pai
@@ -222,27 +222,27 @@ public class Choice extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        btnWork.btn(new EntryPage(), this);
+        Operations.btn(new EntryPage(), this);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnNewMedalistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMedalistsActionPerformed
-        btnWork.btn(new NewCompetitor(), this);
+        Operations.btn(new NewCompetitor(), this);
     }//GEN-LAST:event_btnNewMedalistsActionPerformed
 
     private void btnNewCompetitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewCompetitorActionPerformed
-        btnWork.btn(new NewMedalists(), this);
+        Operations.btn(new NewMedalists(), this);
     }//GEN-LAST:event_btnNewCompetitorActionPerformed
 
     private void btnNewRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewRecordActionPerformed
-        btnWork.btn(new NewReocrd(), this);
+        Operations.btn(new NewReocrd(), this);
     }//GEN-LAST:event_btnNewRecordActionPerformed
 
     private void btnArchiveInfo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchiveInfo1ActionPerformed
-        btnWork.btn(new ArchiveInfo(), this);
+        Operations.btn(new ArchiveInfo(), this);
     }//GEN-LAST:event_btnArchiveInfo1ActionPerformed
 
     private void btnDeleteCompetitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCompetitorActionPerformed
-        btnWork.btn(new DeleteCommpetitor(), this);
+        Operations.btn(new DeleteCommpetitor(), this);
     }//GEN-LAST:event_btnDeleteCompetitorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

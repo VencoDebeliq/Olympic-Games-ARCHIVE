@@ -4,7 +4,7 @@
  */
 package Forms;
 import Code.Queries;
-import Code.btnWork;
+import Code.Operations;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 /**
@@ -140,7 +140,7 @@ public class Confirm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNoActionPerformed
 
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
-        btnWork.btn(new Choice(), getPreviousPage());
+        Operations.btn(new Choice(), getPreviousPage());
         this.setVisible(false);
         query.executeUpdate();
     }//GEN-LAST:event_btnYesActionPerformed

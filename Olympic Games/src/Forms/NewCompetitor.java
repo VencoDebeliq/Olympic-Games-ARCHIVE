@@ -4,7 +4,9 @@
  */
 package Forms;
 import Code.Queries;
-import Code.btnWork;
+import Code.Operations;
+import java.sql.*;
+import javax.swing.JComboBox;
 /**
  *
  * @author v_pai
@@ -19,6 +21,11 @@ public class NewCompetitor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Add new competitor");
         setResizable(false);
+        cbbNationality.removeAllItems();
+        for (String s: Operations.generateNationality())
+        {
+            cbbNationality.addItem(s);
+        }
     }
 
     /**
@@ -41,9 +48,9 @@ public class NewCompetitor extends javax.swing.JFrame {
         pnlButtons = new javax.swing.JPanel();
         txtFirstName = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
-        txtSex = new javax.swing.JTextField();
-        txtNationality = new javax.swing.JTextField();
         txtDateOfBirth = new javax.swing.JTextField();
+        cbbNationality = new javax.swing.JComboBox<>();
+        cbbSex = new javax.swing.JComboBox<>();
         btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,17 +103,23 @@ public class NewCompetitor extends javax.swing.JFrame {
         txtLastName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtLastName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        txtSex.setBackground(new java.awt.Color(254, 255, 228));
-        txtSex.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtSex.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        txtNationality.setBackground(new java.awt.Color(254, 255, 228));
-        txtNationality.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtNationality.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         txtDateOfBirth.setBackground(new java.awt.Color(254, 255, 228));
         txtDateOfBirth.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtDateOfBirth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        cbbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbNationality.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbNationalityActionPerformed(evt);
+            }
+        });
+
+        cbbSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        cbbSex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbSexActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
@@ -117,9 +130,9 @@ public class NewCompetitor extends javax.swing.JFrame {
                 .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDateOfBirth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(txtNationality, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(txtSex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                    .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(cbbNationality, 0, 167, Short.MAX_VALUE)
+                    .addComponent(cbbSex, javax.swing.GroupLayout.Alignment.TRAILING, 0, 167, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlButtonsLayout.setVerticalGroup(
@@ -130,9 +143,9 @@ public class NewCompetitor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbbSex, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(cbbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -223,32 +236,68 @@ public class NewCompetitor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        btnWork.btn(new Choice(), this);
+        Operations.btn(new Choice(), this);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality, Date_of_birth)\n"
+        try
+        {
+            String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality, Date_of_birth)\n"
                 + "VALUES("
                 + "\"" + txtFirstName.getText() + "\", " 
                 + "\"" + txtLastName.getText() + "\", "
-                + txtSex.getText() + ", " 
-                + txtNationality.getText() + ", "
+                + getSex(cbbSex) + ", " 
+                + getNationality(cbbNationality) + ", "
                 + "#" + txtDateOfBirth.getText() + "#);";
-        
-        Queries query = new Queries(q);
-        System.out.println(query);
-        Confirm openPageConfirm = new Confirm(this, btnSave, query);
-        openPageConfirm.setVisible(true);
-        btnSave.setEnabled(false);
+            Queries query = new Queries(q);
+            System.out.println(query);
+            Confirm openPageConfirm = new Confirm(this, btnSave, query);
+            openPageConfirm.setVisible(true);
+            btnSave.setEnabled(false);
+        }
+        catch (Exception ex)
+        {
+            // MAKE A WINDOW TELLING THE USER ITS INCORRECT INPUT
+            System.err.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private int getSex(JComboBox sex)
+    {
+        System.out.println("HERE");
+        if ("Male".equals(sex.getSelectedItem())) return 1;
+        else if ("Female".equals(sex.getSelectedItem())) return 2;
+        return -1;
+    }
+    
+    private int getNationality(JComboBox nat) throws Exception
+    {
+        String sql = "SELECT Nationality.ID FROM Nationality\n"
+                + "WHERE (((Nationality.Nationality_Name) Like \""
+                + nat.getSelectedItem() + "\"));";
+        Queries q = new Queries(sql);
+        ResultSet rs = q.execute();
+        rs.next();
+        return rs.getInt(1);
+    }
+    
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFirstNameActionPerformed
 
+    private void cbbNationalityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbNationalityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbNationalityActionPerformed
+
+    private void cbbSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSexActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSexActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cbbNationality;
+    private javax.swing.JComboBox<String> cbbSex;
     private javax.swing.JLabel lblDateOfBirth;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblLastName;
@@ -260,7 +309,5 @@ public class NewCompetitor extends javax.swing.JFrame {
     private javax.swing.JTextField txtDateOfBirth;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtNationality;
-    private javax.swing.JTextField txtSex;
     // End of variables declaration//GEN-END:variables
 }

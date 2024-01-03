@@ -4,7 +4,7 @@
  */
 package Forms;
 import Code.Queries;
-import Code.btnWork;
+import Code.Operations;
 
 /**
  *
@@ -212,7 +212,7 @@ public class NewReocrd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        btnWork.btn(new Choice(), this);
+        Operations.btn(new Choice(), this);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
