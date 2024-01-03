@@ -227,13 +227,13 @@ public class NewCompetitor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality)\n"
+        String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality, Date_of_birth)\n"
                 + "VALUES("
                 + "\"" + txtFirstName.getText() + "\", " 
                 + "\"" + txtLastName.getText() + "\", "
                 + txtSex.getText() + ", " 
-                + txtNationality.getText()
-                + ");";
+                + txtNationality.getText() + ", "
+                + "#" + txtDateOfBirth.getText() + "#);";
         
         Queries query = new Queries(q);
         System.out.println(query);

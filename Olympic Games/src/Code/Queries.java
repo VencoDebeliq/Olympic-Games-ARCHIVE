@@ -52,4 +52,19 @@ public class Queries {
         }
         return rs;
     }
+    
+    public void executeUpdate()
+    {
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+            Statement s = conn.createStatement();
+            s.executeUpdate(getText());
+            conn.close();
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+    }
 }

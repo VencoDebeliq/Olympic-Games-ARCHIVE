@@ -142,7 +142,7 @@ public class Confirm extends javax.swing.JFrame {
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
         btnWork.btn(new Choice(), getPreviousPage());
         this.setVisible(false);
-        query.execute();
+        query.executeUpdate();
     }//GEN-LAST:event_btnYesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
