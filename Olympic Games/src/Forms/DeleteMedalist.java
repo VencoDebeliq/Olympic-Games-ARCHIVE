@@ -66,7 +66,7 @@ public class DeleteMedalist extends javax.swing.JFrame {
         lblCompID.setBackground(new java.awt.Color(255, 255, 102));
         lblCompID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCompID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCompID.setText("Competitor ID");
+        lblCompID.setText("Competitor");
 
         lblOGID.setBackground(new java.awt.Color(255, 255, 102));
         lblOGID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -190,9 +190,10 @@ public class DeleteMedalist extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
-        String sql = "DELETE Medal_Winners.*\n" +
+        String sql = "DELETE " +
                     "FROM Medal_Winners\n" +
-                    "WHERE (((Medal_Winners.Competitor_ID)=\"" + getCompID(cbbComp) + "\") AND ((Medal_Winners.Olympic_Games_ID)=" + txtOGID.getText() + "));";
+                    "WHERE (((Medal_Winners.Competitor_ID)=" + getCompID(cbbComp) + ") AND ((Medal_Winners.Olympic_Games_ID)=" + txtOGID.getText() + "));";
+        String sql2 = "SELECT * FROM ";
         System.out.println(sql);
         Queries query = new Queries(sql);
         Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);

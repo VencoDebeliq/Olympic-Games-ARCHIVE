@@ -234,7 +234,7 @@ public class Choice extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewCompetitorActionPerformed
 
     private void btnNewRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewRecordActionPerformed
-        Operations.btn(new NewReocrd(), this);
+        Operations.btn(new UpdateReocrd(), this);
     }//GEN-LAST:event_btnNewRecordActionPerformed
 
     private void btnArchiveInfo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchiveInfo1ActionPerformed

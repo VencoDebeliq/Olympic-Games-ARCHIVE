@@ -78,7 +78,7 @@ public class NewMedalists extends javax.swing.JFrame {
         lblCompID.setBackground(new java.awt.Color(255, 255, 102));
         lblCompID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCompID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCompID.setText("Competitor ID");
+        lblCompID.setText("Competitor");
 
         lblOGID.setBackground(new java.awt.Color(255, 255, 102));
         lblOGID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
