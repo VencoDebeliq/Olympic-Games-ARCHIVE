@@ -36,6 +36,12 @@ public class SelectQuery extends javax.swing.JFrame {
             cbbChoose.addItem(items.get(i));
         }
         setQuery(query);
+        if (query == 1 || query == 2 || query == 5)
+            lblSure.setText("Choose discipline");
+        else if (query == 3 || query == 4)
+            lblSure.setText("Choose year of games");
+        else
+            lblSure.setText("Choose nationality");
     }
 
     /**
@@ -63,7 +69,7 @@ public class SelectQuery extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 163, 0)));
 
         lblSure.setBackground(new java.awt.Color(254, 255, 228));
-        lblSure.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        lblSure.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblSure.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSure.setText("Choose");
 
@@ -81,10 +87,10 @@ public class SelectQuery extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblSure, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSure, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addComponent(cbbChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

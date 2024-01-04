@@ -5,20 +5,28 @@
 package Forms;
 import Code.Queries;
 import Code.Operations;
+import Entitys.Competitor;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
 /**
  *
  * @author user
  */
-public class DeleteCommpetitor extends javax.swing.JFrame {
-
+public class DeleteMedalist extends javax.swing.JFrame {
+    private ArrayList <Competitor> competitors = Competitor.getAll();
     /**
      * Creates new form DeleteCommpetitor
      */
-    public DeleteCommpetitor() {
+    public DeleteMedalist() {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Delete medalist");
         setResizable(false);
+        cbbComp.removeAllItems();
+        for (Competitor c: competitors)
+        {
+            cbbComp.addItem(c.getFirst_Name() + " " + c.getLast_Name());
+        }
     }
 
     /**
@@ -36,8 +44,8 @@ public class DeleteCommpetitor extends javax.swing.JFrame {
         lblCompID = new javax.swing.JLabel();
         lblOGID = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
-        txtCompID = new javax.swing.JTextField();
         txtOGID = new javax.swing.JTextField();
+        cbbComp = new javax.swing.JComboBox<>();
         btnSaveMedals = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,13 +75,17 @@ public class DeleteCommpetitor extends javax.swing.JFrame {
 
         pnlButtons.setBackground(new java.awt.Color(255, 255, 102));
 
-        txtCompID.setBackground(new java.awt.Color(254, 255, 228));
-        txtCompID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtCompID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         txtOGID.setBackground(new java.awt.Color(254, 255, 228));
         txtOGID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtOGID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        cbbComp.setBackground(new java.awt.Color(254, 255, 228));
+        cbbComp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbCompActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
@@ -81,17 +93,17 @@ public class DeleteCommpetitor extends javax.swing.JFrame {
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCompID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(txtOGID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtOGID, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbComp, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtCompID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbbComp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(txtOGID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -178,21 +190,40 @@ public class DeleteCommpetitor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
-        Queries query = new Queries();
+        String sql = "DELETE Medal_Winners.*\n" +
+                    "FROM Medal_Winners\n" +
+                    "WHERE (((Medal_Winners.Competitor_ID)=\"" + getCompID(cbbComp) + "\") AND ((Medal_Winners.Olympic_Games_ID)=" + txtOGID.getText() + "));";
+        System.out.println(sql);
+        Queries query = new Queries(sql);
         Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
         openPageConfirm.setVisible(true);
         btnSaveMedals.setEnabled(false);
     }//GEN-LAST:event_btnSaveMedalsActionPerformed
 
+    private void cbbCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCompActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbCompActionPerformed
+
+    private int getCompID(JComboBox <String> comp)
+    {
+        String el = (String) comp.getSelectedItem();
+        for (Competitor c: competitors)
+        {
+            String names = c.getFirst_Name() + " " + c.getLast_Name();
+            if (el.equals(names)) return c.getID();
+        }
+        return -1;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveMedals;
+    private javax.swing.JComboBox<String> cbbComp;
     private javax.swing.JLabel lblCompID;
     private javax.swing.JLabel lblOGID;
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;
     private javax.swing.JPanel pnlButtons;
-    private javax.swing.JTextField txtCompID;
     private javax.swing.JTextField txtOGID;
     // End of variables declaration//GEN-END:variables
 }

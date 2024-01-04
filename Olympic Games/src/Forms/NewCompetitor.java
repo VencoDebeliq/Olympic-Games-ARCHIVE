@@ -107,6 +107,7 @@ public class NewCompetitor extends javax.swing.JFrame {
         txtDateOfBirth.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtDateOfBirth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        cbbNationality.setBackground(new java.awt.Color(254, 255, 228));
         cbbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbbNationality.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +115,7 @@ public class NewCompetitor extends javax.swing.JFrame {
             }
         });
 
+        cbbSex.setBackground(new java.awt.Color(254, 255, 228));
         cbbSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
         cbbSex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

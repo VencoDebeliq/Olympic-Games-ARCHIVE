@@ -5,13 +5,16 @@
 package Forms;
 import Code.Queries;
 import Code.Operations;
+import Entitys.Competitor;
 import javax.swing.JComboBox;
+import java.sql.*;
+import java.util.ArrayList;
 /**
  *
  * @author v_pai
  */
 public class NewMedalists extends javax.swing.JFrame {
-
+    private ArrayList <Competitor> competitors = Competitor.getAll();
     /**
      * Creates new form NewMedalists
      */
@@ -24,6 +27,11 @@ public class NewMedalists extends javax.swing.JFrame {
         for (String s: Operations.generateDiscipline())
         {
             cbbDisc.addItem(s);
+        }
+        cbbComp.removeAllItems();
+        for (Competitor c: competitors)
+        {
+            cbbComp.addItem(c.getFirst_Name() + " " + c.getLast_Name());
         }
     }
 
@@ -45,11 +53,11 @@ public class NewMedalists extends javax.swing.JFrame {
         lblDisc = new javax.swing.JLabel();
         lblDescr = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
-        txtCompID = new javax.swing.JTextField();
         txtOGID = new javax.swing.JTextField();
         txtDesc = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         cbbDisc = new javax.swing.JComboBox<>();
+        cbbComp = new javax.swing.JComboBox<>();
         btnSaveMedals = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,10 +102,6 @@ public class NewMedalists extends javax.swing.JFrame {
 
         pnlButtons.setBackground(new java.awt.Color(255, 255, 102));
 
-        txtCompID.setBackground(new java.awt.Color(254, 255, 228));
-        txtCompID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtCompID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         txtOGID.setBackground(new java.awt.Color(254, 255, 228));
         txtOGID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtOGID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -110,7 +114,16 @@ public class NewMedalists extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gold", "Silver", "Bronze" }));
 
+        cbbDisc.setBackground(new java.awt.Color(254, 255, 228));
         cbbDisc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbbComp.setBackground(new java.awt.Color(254, 255, 228));
+        cbbComp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbCompActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
         pnlButtons.setLayout(pnlButtonsLayout);
@@ -118,20 +131,21 @@ public class NewMedalists extends javax.swing.JFrame {
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCompID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(txtDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(txtOGID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbbDisc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                        .addComponent(txtOGID, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbbDisc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbbComp, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         pnlButtonsLayout.setVerticalGroup(
             pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtCompID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbbComp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(txtOGID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(cbbDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +222,7 @@ public class NewMedalists extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,28 +246,58 @@ public class NewMedalists extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
-        String q = "INSERT INTO Medal_Winners ( Competitor_ID, Olympic_Games_ID, Discipline_ID, Medal_Type_ID, Description )\n" +
-                    "VALUES("
-                + txtCompID.getText() + ", "
-                + txtOGID.getText() + ", "
-                + getDisc(cbbDisc) + ", "
-                + (jComboBox1.getSelectedIndex() + 1) + ", "
-                + "\"" + txtDesc.getText() + "\");";
-        System.out.println(q);
-        Queries query = new Queries(q);
-        Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
-        openPageConfirm.setVisible(true);
-        btnSaveMedals.setEnabled(false);
+        try
+        {
+            String q = "INSERT INTO Medal_Winners ( Competitor_ID, Olympic_Games_ID, Discipline_ID, Medal_Type_ID, Description )\n" +
+                        "VALUES("
+                    + getCompID(cbbComp) + ", "
+                    + txtOGID.getText() + ", "
+                    + getDiscID(cbbDisc) + ", "
+                    + (jComboBox1.getSelectedIndex() + 1) + ", "
+                    + "\"" + txtDesc.getText() + "\");";
+        
+            System.out.println(q);
+            Queries query = new Queries(q);
+            Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
+            openPageConfirm.setVisible(true);
+            btnSaveMedals.setEnabled(false);
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnSaveMedalsActionPerformed
+
+    private void cbbCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCompActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbCompActionPerformed
    
-    private int getDisc(JComboBox desc)
+    private int getDiscID(JComboBox disc) throws Exception
     {
-        return 0;
+        String sql = "SELECT Discipline.ID FROM Discipline\n"
+                + "WHERE (((Discipline.Discipline_Name) Like \""
+                + disc.getSelectedItem() + "\"));";
+        Queries q = new Queries(sql);
+        ResultSet rs = q.execute();
+        rs.next();
+        return rs.getInt(1);
+    }
+    
+    private int getCompID(JComboBox <String> comp)
+    {
+        String el = (String) comp.getSelectedItem();
+        for (Competitor c: competitors)
+        {
+            String names = c.getFirst_Name() + " " + c.getLast_Name();
+            if (el.equals(names)) return c.getID();
+        }
+        return -1;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveMedals;
+    private javax.swing.JComboBox<String> cbbComp;
     private javax.swing.JComboBox<String> cbbDisc;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblCompID;
@@ -264,7 +308,6 @@ public class NewMedalists extends javax.swing.JFrame {
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;
     private javax.swing.JPanel pnlButtons;
-    private javax.swing.JTextField txtCompID;
     private javax.swing.JTextField txtDesc;
     private javax.swing.JTextField txtOGID;
     // End of variables declaration//GEN-END:variables
