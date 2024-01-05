@@ -9,6 +9,7 @@ import Entitys.Competitor;
 import javax.swing.JComboBox;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author v_pai
@@ -264,6 +265,7 @@ public class NewMedalists extends javax.swing.JFrame {
         }
         catch (Exception ex)
         {
+            JOptionPane.showMessageDialog(this, "Invalid input", "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnSaveMedalsActionPerformed

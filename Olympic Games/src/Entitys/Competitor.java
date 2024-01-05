@@ -6,6 +6,7 @@ package Entitys;
 import Code.Regex;
 import java.util.ArrayList;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ventsislavlp
@@ -108,8 +109,13 @@ public class Competitor {
             }
             conn.close();
         }
+        catch (NullPointerException e)
+        {
+            System.err.println(e.getMessage());
+        }
         catch (Exception e)
         {
+            JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println(e.getMessage());
         }
         

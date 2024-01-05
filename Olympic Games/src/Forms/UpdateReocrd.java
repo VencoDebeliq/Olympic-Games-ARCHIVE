@@ -8,6 +8,7 @@ import Code.Operations;
 import Entitys.Competitor;
 import java.util.ArrayList;
 import java.sql.*;
+import javax.swing.ComboBoxEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
@@ -16,7 +17,8 @@ import javax.swing.JComboBox;
  * @author v_pai
  */
 public class UpdateReocrd extends javax.swing.JFrame {
-
+    private ArrayList <Competitor> competitors = Competitor.getAll();
+    private ArrayList <Entitys.Record> records = Entitys.Record.getAll();
     /**
      * Creates new form NewReocrd
      */
@@ -53,7 +55,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
         lblNewDesc = new javax.swing.JLabel();
         lblOGID = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
-        txtNewDescript = new javax.swing.JTextField();
+        txtNewScore = new javax.swing.JTextField();
         txtOGID = new javax.swing.JTextField();
         cbbDisc = new javax.swing.JComboBox<>();
         cbbDesc = new javax.swing.JComboBox<>();
@@ -89,7 +91,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
         lblNewDesc.setBackground(new java.awt.Color(255, 255, 102));
         lblNewDesc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblNewDesc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNewDesc.setText("New Description");
+        lblNewDesc.setText("New Score");
 
         lblOGID.setBackground(new java.awt.Color(255, 255, 102));
         lblOGID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -98,9 +100,9 @@ public class UpdateReocrd extends javax.swing.JFrame {
 
         pnlButtons.setBackground(new java.awt.Color(255, 255, 102));
 
-        txtNewDescript.setBackground(new java.awt.Color(254, 255, 228));
-        txtNewDescript.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtNewDescript.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNewScore.setBackground(new java.awt.Color(254, 255, 228));
+        txtNewScore.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtNewScore.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtOGID.setBackground(new java.awt.Color(254, 255, 228));
         txtOGID.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -142,7 +144,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
                 .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbbDisc, 0, 337, Short.MAX_VALUE)
                     .addComponent(cbbDesc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNewDescript)
+                    .addComponent(txtNewScore)
                     .addComponent(cbbComp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtOGID)))
         );
@@ -153,9 +155,9 @@ public class UpdateReocrd extends javax.swing.JFrame {
                 .addComponent(cbbDisc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbbDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(txtNewDescript, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
+                .addComponent(txtNewScore, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(cbbComp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtOGID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +262,10 @@ public class UpdateReocrd extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
-        Queries query = new Queries();
+        String q = "UPDATE Record SET Record.Competitor_ID = " + getCompID(cbbComp) + ", Record.Score = " + txtNewScore.getText() + "\n" +
+                    "WHERE (((Record.ID) = " + getRecordID(cbbDesc) + "));";
+        System.out.println(q);
+        Queries query = new Queries(q);
         Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
         openPageConfirm.setVisible(true);
         btnSaveMedals.setEnabled(false);
@@ -284,9 +289,9 @@ public class UpdateReocrd extends javax.swing.JFrame {
         String sql = "SELECT Record.Description FROM Record\n"
                 + "WHERE (Record.Discipline = " + getDiscID(cbbDisc) + ");";
         Queries q = new Queries(sql);
-        ResultSet rs = q.execute();
         try
         {
+            ResultSet rs = q.execute();
             while (rs.next())
             {
                 ans.add(rs.getString(1));
@@ -305,9 +310,9 @@ public class UpdateReocrd extends javax.swing.JFrame {
         String sql = "SELECT Discipline.ID FROM Discipline\n"
                 + "WHERE (Discipline.Discipline_Name Like \"" + name + "\");";
         Queries q = new Queries(sql);
-        ResultSet rs = q.execute();
         try
         {
+            ResultSet rs = q.execute();
             rs.next();
             return rs.getInt(1);
         }
@@ -327,6 +332,28 @@ public class UpdateReocrd extends javax.swing.JFrame {
         }
     }
     
+    private int getCompID(JComboBox <String> comp)
+    {
+        String el = (String) comp.getSelectedItem();
+        for (Competitor c: competitors)
+        {
+            String names = c.getFirst_Name() + " " + c.getLast_Name();
+            if (el.equals(names)) return c.getID();
+        }
+        return -1;
+    }
+    
+    private int getRecordID(JComboBox <String> rec)
+    {
+        String el = (String) rec.getSelectedItem();
+        for (Entitys.Record r: records)
+        {
+            String record = r.getDescription();
+            if (el.equals(record)) return r.getID();
+        }
+        return -1;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveMedals;
@@ -341,7 +368,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;
     private javax.swing.JPanel pnlButtons;
-    private javax.swing.JTextField txtNewDescript;
+    private javax.swing.JTextField txtNewScore;
     private javax.swing.JTextField txtOGID;
     // End of variables declaration//GEN-END:variables
 }

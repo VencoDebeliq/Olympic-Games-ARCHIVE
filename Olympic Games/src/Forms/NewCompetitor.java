@@ -7,6 +7,7 @@ import Code.Queries;
 import Code.Operations;
 import java.sql.*;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 /**
  *
  * @author v_pai
@@ -259,7 +260,7 @@ public class NewCompetitor extends javax.swing.JFrame {
         }
         catch (Exception ex)
         {
-            // MAKE A WINDOW TELLING THE USER ITS INCORRECT INPUT
+            JOptionPane.showMessageDialog(this, "Invalid input (date should mm/dd/yyyy)", "Alert", JOptionPane.ERROR_MESSAGE);
             System.err.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnSaveActionPerformed

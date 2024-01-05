@@ -7,11 +7,12 @@ import Code.Queries;
 import Code.Operations;
 import java.util.ArrayList;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author user
  */
-public class SelectQuery extends javax.swing.JFrame {
+public class ArchiveInformation extends javax.swing.JFrame {
 
     private int query;
 
@@ -23,9 +24,9 @@ public class SelectQuery extends javax.swing.JFrame {
         return query;
     }
     /**
-     * Creates new form SelectQuery
+     * Creates new form SelectQueries
      */
-    public SelectQuery(ArrayList <String> items, int query) {
+    public ArchiveInformation(ArrayList <String> items, int query) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Select");
@@ -158,22 +159,22 @@ public class SelectQuery extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBack5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack5ActionPerformed
-        Operations.btn(new ArchiveInfo(), this);
+        Operations.btn(new SelectQueries(), this);
     }//GEN-LAST:event_btnBack5ActionPerformed
 
     private void cbbChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbChooseActionPerformed
         jTextArea1.setText("");
         if (getQuery() == 1)
         {
-            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Record.Description, Olympic_Games.Year_of_conduction\n" +
-"FROM Olympic_Games INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Record ON Competitor.ID = Record.Competitor_ID) ON Discipline.ID = Record.Discipline) ON Olympic_Games.ID = Record.Olympic_Games_ID\n" +
-"WHERE (((Discipline.Discipline_Name) Like \"" + cbbChoose.getSelectedItem() + "\"));";
-            ResultSet rs = new Queries(q).execute();
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Record.Description, Olympic_Games.Year_of_conduction, Record.Score\n" +
+                        "FROM Olympic_Games INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Record ON Competitor.ID = Record.Competitor_ID) ON Discipline.ID = Record.Discipline) ON Olympic_Games.ID = Record.Olympic_Games_ID\n" +
+                        "WHERE (((Discipline.Discipline_Name) Like \"" + cbbChoose.getSelectedItem() + "\"));";
             try
             {
+                ResultSet rs = new Queries(q).execute();
                 while (rs.next())
                 {
-                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + ", " + rs.getString("Description") + '\n');
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + ", " + rs.getString("Description") + ", Score: " + rs.getString("Score") + '\n');
                 }
             }
             catch (Exception ex)
@@ -186,9 +187,9 @@ public class SelectQuery extends javax.swing.JFrame {
             String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name\n" +
 "FROM Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID\n" +
 "WHERE (((Discipline.Discipline_Name) Like " + "\"" + cbbChoose.getSelectedItem() + "\"));";
-            ResultSet rs = new Queries(q).execute();
             try
             {
+                ResultSet rs = new Queries(q).execute();
                 while (rs.next())
                 {
                     jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
@@ -201,19 +202,25 @@ public class SelectQuery extends javax.swing.JFrame {
         }
         else if (getQuery() == 3)
         {
-            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Olympic_Games.Year_of_conduction, Record.Description\n" +
+            String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Record.Description, Olympic_Games.Year_of_conduction, Record.Score\n" +
 "FROM Olympic_Games INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Record ON Competitor.ID = Record.Competitor_ID) ON Discipline.ID = Record.Discipline) ON Olympic_Games.ID = Record.Olympic_Games_ID\n" +
 "WHERE (((Olympic_Games.Year_of_conduction)=" + cbbChoose.getSelectedItem() + "));";
-            ResultSet rs = new Queries(q).execute();
             try
             {
+                ResultSet rs = new Queries(q).execute();
                 while (rs.next())
                 {
-                    jTextArea1.append(rs.getString("Discipline_Name") + ", " + rs.getString("First_Name") + " " + rs.getString("Last_Name") + ", " + rs.getString("Description") + '\n');
+                    jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + ", " + rs.getString("Description") + ", Score: " + rs.getString("Score") + '\n');
                 }
+            }
+            catch (NullPointerException e)
+            {
+                System.err.println(e.getMessage());
             }
             catch (Exception ex)
             {
+                System.out.println("3");
+                JOptionPane.showMessageDialog(this, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE);
                 System.err.println(ex.getMessage());
             }
         }
@@ -222,13 +229,17 @@ public class SelectQuery extends javax.swing.JFrame {
             String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name, Medal_Winners.Description, Medal_Type.Type_Name, Olympic_Games.Year_of_conduction\n" +
 "FROM Medal_Type INNER JOIN (Discipline INNER JOIN (Olympic_Games INNER JOIN (Competitor INNER JOIN Medal_Winners ON Competitor.ID = Medal_Winners.Competitor_ID) ON Olympic_Games.ID = Medal_Winners.Olympic_Games_ID) ON Discipline.ID = Medal_Winners.Discipline_ID) ON Medal_Type.ID = Medal_Winners.Medal_Type_ID\n" +
 "WHERE (((Olympic_Games.Year_of_conduction)=" + cbbChoose.getSelectedItem() + "));";
-            ResultSet rs = new Queries(q).execute();
             try
             {
+                ResultSet rs = new Queries(q).execute();
                 while (rs.next())
                 {
                     jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
                 }
+            }
+            catch (NullPointerException e)
+            {
+                System.err.println(e.getMessage());
             }
             catch (Exception ex)
             {
@@ -240,9 +251,9 @@ public class SelectQuery extends javax.swing.JFrame {
             String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Discipline.Discipline_Name\n" +
 "FROM Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID\n" +
 "WHERE (((Discipline.Discipline_Name) Like \"" + cbbChoose.getSelectedItem() +"\"));";
-            ResultSet rs = new Queries(q).execute();
             try
             {
+                ResultSet rs = new Queries(q).execute();
                 while (rs.next())
                 {
                     jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');
@@ -259,9 +270,9 @@ public class SelectQuery extends javax.swing.JFrame {
 "FROM Nationality INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID) ON Nationality.ID = Competitor.Nationality\n" +
 "WHERE ((([Nationality].[Nationality_Name]) Like \"" + cbbChoose.getSelectedItem() + "\" ));";
             
-            ResultSet rs = new Queries(q).execute();
             try
             {
+                ResultSet rs = new Queries(q).execute();
                 while (rs.next())
                 {
                     jTextArea1.append(rs.getString("First_Name") + " " + rs.getString("Last_Name") + '\n');

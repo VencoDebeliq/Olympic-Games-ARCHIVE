@@ -6,18 +6,17 @@ package Forms;
 import Code.Operations;
 import Entitys.OlympicGamesEdition;
 import java.util.ArrayList;
-import java.sql.*;
 import java.util.Collections;
 /**
  *
  * @author user
  */
-public class ArchiveInfo extends javax.swing.JFrame {
+public class SelectQueries extends javax.swing.JFrame {
 
     /**
      * Creates new form ArchiveInfo
      */
-    public ArchiveInfo() {
+    public SelectQueries() {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Information");
@@ -233,7 +232,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         String sql = "";
-        new SelectQuery(items, 2).setVisible(true);
+        new ArchiveInformation(items, 2).setVisible(true);
     }//GEN-LAST:event_btnMedInDiscActionPerformed
 
     private void btnRecInDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecInDiscActionPerformed
@@ -248,7 +247,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         String sql = "";
-        new SelectQuery(items, 1).setVisible(true);
+        new ArchiveInformation(items, 1).setVisible(true);
     }//GEN-LAST:event_btnRecInDiscActionPerformed
 
     private void btnRecInYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecInYearActionPerformed
@@ -260,7 +259,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
                 items.add(Integer.toString(a.getYear_of_conduction()));
         }
         Collections.sort(items);
-        new SelectQuery(items, 3).setVisible(true);
+        new ArchiveInformation(items, 3).setVisible(true);
     }//GEN-LAST:event_btnRecInYearActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -279,7 +278,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         String sql = "";
-        new SelectQuery(items, 5).setVisible(true);
+        new ArchiveInformation(items, 5).setVisible(true);
     }//GEN-LAST:event_btnCompInDiscActionPerformed
 
     private void btnMedInYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedInYearActionPerformed
@@ -291,7 +290,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
                 items.add(Integer.toString(a.getYear_of_conduction()));
         }
         Collections.sort(items);
-        new SelectQuery(items, 4).setVisible(true);
+        new ArchiveInformation(items, 4).setVisible(true);
     }//GEN-LAST:event_btnMedInYearActionPerformed
 
     private void btnCompWithNatioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompWithNatioActionPerformed
@@ -306,7 +305,7 @@ public class ArchiveInfo extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         String sql = "";
-        new SelectQuery(items, 6).setVisible(true);
+        new ArchiveInformation(items, 6).setVisible(true);
     }//GEN-LAST:event_btnCompWithNatioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

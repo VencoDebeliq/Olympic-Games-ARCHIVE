@@ -7,6 +7,7 @@ import Code.Queries;
 import Code.Operations;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author user
@@ -140,9 +141,20 @@ public class Confirm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNoActionPerformed
 
     private void btnYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYesActionPerformed
-        Operations.btn(new Choice(), getPreviousPage());
-        this.setVisible(false);
-        query.executeUpdate();
+        try
+        {
+            query.executeUpdate();
+            JOptionPane.showMessageDialog(getPreviousPage(), "Database update SUCCESSFULL", "Alert", JOptionPane.INFORMATION_MESSAGE);
+            Operations.btn(new Choice(), getPreviousPage());
+            this.setVisible(false);
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(getPreviousPage(), "Something went wrong, update FAILED", "Error", JOptionPane.ERROR_MESSAGE);
+            this.setVisible(false);
+            btnSave.setEnabled(true);
+            System.err.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnYesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

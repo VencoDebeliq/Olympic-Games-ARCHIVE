@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -96,8 +97,13 @@ public class Record {
             }
             conn.close();
         }
+        catch (NullPointerException e)
+        {
+            System.err.println(e.getMessage());
+        }
         catch (Exception e)
         {
+            JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println(e.getMessage());
         }
         

@@ -5,6 +5,7 @@
 package Code;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,35 +37,21 @@ public class Queries {
         return getText();
     }
     
-    public ResultSet execute()
+    public ResultSet execute() throws Exception
     {
-        ResultSet rs = null;
-        try
-        {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            rs = s.executeQuery(getText());
-            conn.close();
-        }
-        catch(Exception ex)
-        {
-            System.err.println(ex.getMessage());
-        }
+        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+        Statement s = conn.createStatement();
+        ResultSet rs = s.executeQuery(getText());
+        conn.close();
+        
         return rs;
     }
     
-    public void executeUpdate()
+    public void executeUpdate() throws Exception
     {
-        try
-        {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            s.executeUpdate(getText());
-            conn.close();
-        }
-        catch(Exception ex)
-        {
-            System.err.println(ex.getMessage());
-        }
+        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+        Statement s = conn.createStatement();
+        s.executeUpdate(getText());
+        conn.close();
     }
 }

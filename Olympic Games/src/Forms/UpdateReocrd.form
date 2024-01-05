@@ -177,7 +177,7 @@
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="New Description"/>
+                <Property name="text" type="java.lang.String" value="New Score"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblOGID">
@@ -207,7 +207,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cbbDisc" alignment="0" pref="337" max="32767" attributes="0"/>
                               <Component id="cbbDesc" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtNewDescript" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNewScore" alignment="0" max="32767" attributes="0"/>
                               <Component id="cbbComp" max="32767" attributes="0"/>
                               <Component id="txtOGID" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -221,9 +221,9 @@
                           <Component id="cbbDisc" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="cbbDesc" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="txtNewDescript" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="txtNewScore" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="cbbComp" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="txtOGID" min="-2" pref="25" max="-2" attributes="0"/>
@@ -233,7 +233,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="txtNewDescript">
+                <Component class="javax.swing.JTextField" name="txtNewScore">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="e4" green="ff" red="fe" type="rgb"/>

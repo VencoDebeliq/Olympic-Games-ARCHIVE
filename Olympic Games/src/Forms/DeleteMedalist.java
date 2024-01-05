@@ -193,7 +193,6 @@ public class DeleteMedalist extends javax.swing.JFrame {
         String sql = "DELETE " +
                     "FROM Medal_Winners\n" +
                     "WHERE (((Medal_Winners.Competitor_ID)=" + getCompID(cbbComp) + ") AND ((Medal_Winners.Olympic_Games_ID)=" + txtOGID.getText() + "));";
-        String sql2 = "SELECT * FROM ";
         System.out.println(sql);
         Queries query = new Queries(sql);
         Confirm openPageConfirm = new Confirm(this, btnSaveMedals, query);
