@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entitys;
+import Code.Queries;
 import Code.Regex;
 import java.util.ArrayList;
 import java.sql.*;
@@ -42,7 +43,7 @@ public class Competitor {
     }
 
     public void setDate_of_birth(String Date_of_birth) {
-        if(Regex.regex(Date_of_birth))
+        if(Regex.isDateValid(Date_of_birth))
             this.Date_of_birth = Date_of_birth;
     }
     
@@ -89,14 +90,12 @@ public class Competitor {
         return String.format("%d %s %s %d %d", getID(), getFirst_Name(), getLast_Name(), getSex(), getNationality());
     }
     
-    public static ArrayList <Competitor> getAll()
+    public static ArrayList <Competitor> getAll() // gets all competitors from the db 
     {
         ArrayList <Competitor> ans = new ArrayList <>();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM Competitor");
+            ResultSet rs = new Queries("SELECT * FROM Competitor").execute();
             while (rs.next())
             {
                 Competitor c = new Competitor();
@@ -107,7 +106,6 @@ public class Competitor {
                 c.setNationality(rs.getInt("Nationality"));
                 ans.add(c);
             }
-            conn.close();
         }
         catch (NullPointerException e)
         {

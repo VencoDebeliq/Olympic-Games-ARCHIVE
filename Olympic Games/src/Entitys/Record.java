@@ -4,6 +4,7 @@
  */
 package Entitys;
 
+import Code.Queries;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -77,14 +78,12 @@ public class Record {
         this(1, 0, 37, 1, "");
     }
     
-    public static ArrayList <Record> getAll()
+    public static ArrayList <Record> getAll() // gets all Records from the db
     {
         ArrayList <Record> ans = new ArrayList <>();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM Record");
+            ResultSet rs = new Queries("SELECT * FROM Record").execute();
             while (rs.next())
             {
                 Record c = new Record();
@@ -95,7 +94,6 @@ public class Record {
                 c.setDescription(rs.getString("Description"));
                 ans.add(c);
             }
-            conn.close();
         }
         catch (NullPointerException e)
         {

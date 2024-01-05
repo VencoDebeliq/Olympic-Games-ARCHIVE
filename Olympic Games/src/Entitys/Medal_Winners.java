@@ -4,6 +4,7 @@
  */
 package Entitys;
 
+import Code.Queries;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -87,14 +88,12 @@ public class Medal_Winners {
         this(1, "", 1, 37, 1, "");
     }
     
-    public static ArrayList <Medal_Winners> getAll()
+    public static ArrayList <Medal_Winners> getAll() // gets all Medal_Winners from the db
     {
         ArrayList <Medal_Winners> ans = new ArrayList <>();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM Medal_Winners");
+            ResultSet rs = new Queries("SELECT * FROM Medal_Winners").execute();
             while (rs.next())
             {
                 Medal_Winners c = new Medal_Winners();
@@ -106,7 +105,6 @@ public class Medal_Winners {
                 c.setDescription(rs.getString("Description"));
                 ans.add(c);
             }
-            conn.close();
         }
         catch (NullPointerException e)
         {

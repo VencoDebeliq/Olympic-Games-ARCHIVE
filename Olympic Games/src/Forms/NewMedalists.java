@@ -274,7 +274,7 @@ public class NewMedalists extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbCompActionPerformed
    
-    private int getDiscID(JComboBox disc) throws Exception
+    private int getDiscID(JComboBox disc) throws Exception  // returns Discipline ID given its name
     {
         String sql = "SELECT Discipline.ID FROM Discipline\n"
                 + "WHERE (((Discipline.Discipline_Name) Like \""
@@ -285,7 +285,7 @@ public class NewMedalists extends javax.swing.JFrame {
         return rs.getInt(1);
     }
     
-    private int getCompID(JComboBox <String> comp)
+    private int getCompID(JComboBox <String> comp) // returns Competitor ID given his names
     {
         String el = (String) comp.getSelectedItem();
         for (Competitor c: competitors)

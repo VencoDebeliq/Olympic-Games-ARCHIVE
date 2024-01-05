@@ -265,7 +265,7 @@ public class NewCompetitor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private int getSex(JComboBox sex)
+    private int getSex(JComboBox sex) // returns the sex ID given its name
     {
         System.out.println("HERE");
         if ("Male".equals(sex.getSelectedItem())) return 1;
@@ -273,7 +273,7 @@ public class NewCompetitor extends javax.swing.JFrame {
         return -1;
     }
     
-    private int getNationality(JComboBox nat) throws Exception
+    private int getNationality(JComboBox nat) throws Exception // returns the nationality ID given its name
     {
         String sql = "SELECT Nationality.ID FROM Nationality\n"
                 + "WHERE (((Nationality.Nationality_Name) Like \""

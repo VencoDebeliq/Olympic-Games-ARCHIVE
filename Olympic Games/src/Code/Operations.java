@@ -4,10 +4,7 @@
  */
 package Code;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,19 +19,16 @@ public class Operations {
         obj.setVisible(false);
     }
     
-    public static ArrayList <String> generateNationality()
+    public static ArrayList <String> generateNationality() // gets all the nationalities from the Database
     {
         ArrayList <String> items = new ArrayList<> ();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT Nationality_Name FROM Nationality");
+            ResultSet rs = new Queries("SELECT Nationality_Name FROM Nationality").execute();
             while (rs.next())
             {
                 items.add(rs.getString(1));
             }
-            conn.close();
         }
         catch (Exception ex)
         {
@@ -43,23 +37,19 @@ public class Operations {
         return items;
     }
     
-    public static ArrayList <String> generateDiscipline()
+    public static ArrayList <String> generateDiscipline() // gets all the Disciplines from the Database
     {
         ArrayList <String> items = new ArrayList<> ();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT Discipline_Name FROM Discipline");
+            ResultSet rs = new Queries("SELECT Discipline_Name FROM Discipline").execute();
             while (rs.next())
             {
                 items.add(rs.getString(1));
             }
-            conn.close();
         }
         catch (Exception ex)
         {
-            JOptionPane.showMessageDialog(null, "Something went wrong", "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println(ex.getMessage());
         }
         return items;

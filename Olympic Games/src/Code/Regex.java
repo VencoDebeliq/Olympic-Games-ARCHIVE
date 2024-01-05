@@ -11,7 +11,7 @@ package Code;
  */
 import java.util.regex.*;
 public class Regex {
-    public static boolean regex(String a){
+    public static boolean isDateValid(String a){ // regex checking for a correct date
         Pattern p = Pattern.compile("^[0-3]\\d[/][0-3]\\d[/]\\d{4}");
         Matcher m = p.matcher(a);
         return m.matches();

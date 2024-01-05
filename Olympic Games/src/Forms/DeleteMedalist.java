@@ -204,7 +204,7 @@ public class DeleteMedalist extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbCompActionPerformed
 
-    private int getCompID(JComboBox <String> comp)
+    private int getCompID(JComboBox <String> comp) // returns the ID of a competitor given his name
     {
         String el = (String) comp.getSelectedItem();
         for (Competitor c: competitors)

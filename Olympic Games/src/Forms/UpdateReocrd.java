@@ -8,8 +8,6 @@ import Code.Operations;
 import Entitys.Competitor;
 import java.util.ArrayList;
 import java.sql.*;
-import javax.swing.ComboBoxEditor;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
 /**
@@ -283,7 +281,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
         addDescription();
     }//GEN-LAST:event_cbbDiscActionPerformed
 
-    private ArrayList <String> getDescriptionFromDisc()
+    private ArrayList <String> getDescriptionFromDisc() // generates Description ArrayList given the Discipline
     {
         ArrayList <String> ans = new ArrayList <> ();
         String sql = "SELECT Record.Description FROM Record\n"
@@ -323,7 +321,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
         }
     }
     
-    private void addDescription()
+    private void addDescription() // generates Description combobox
     {
         cbbDesc.removeAllItems();
         for (String s: getDescriptionFromDisc())
@@ -332,7 +330,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
         }
     }
     
-    private int getCompID(JComboBox <String> comp)
+    private int getCompID(JComboBox <String> comp) // gets Competitor ID given his names
     {
         String el = (String) comp.getSelectedItem();
         for (Competitor c: competitors)
@@ -343,7 +341,7 @@ public class UpdateReocrd extends javax.swing.JFrame {
         return -1;
     }
     
-    private int getRecordID(JComboBox <String> rec)
+    private int getRecordID(JComboBox <String> rec) // gets Record ID given its description
     {
         String el = (String) rec.getSelectedItem();
         for (Entitys.Record r: records)

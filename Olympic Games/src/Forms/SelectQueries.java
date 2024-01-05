@@ -231,7 +231,6 @@ public class SelectQueries extends javax.swing.JFrame {
         {
             System.err.println(ex.getMessage());
         }
-        String sql = "";
         new ArchiveInformation(items, 2).setVisible(true);
     }//GEN-LAST:event_btnMedInDiscActionPerformed
 
@@ -246,7 +245,6 @@ public class SelectQueries extends javax.swing.JFrame {
         {
             System.err.println(ex.getMessage());
         }
-        String sql = "";
         new ArchiveInformation(items, 1).setVisible(true);
     }//GEN-LAST:event_btnRecInDiscActionPerformed
 
@@ -277,7 +275,6 @@ public class SelectQueries extends javax.swing.JFrame {
         {
             System.err.println(ex.getMessage());
         }
-        String sql = "";
         new ArchiveInformation(items, 5).setVisible(true);
     }//GEN-LAST:event_btnCompInDiscActionPerformed
 
@@ -304,7 +301,6 @@ public class SelectQueries extends javax.swing.JFrame {
         {
             System.err.println(ex.getMessage());
         }
-        String sql = "";
         new ArchiveInformation(items, 6).setVisible(true);
     }//GEN-LAST:event_btnCompWithNatioActionPerformed
 

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entitys;
+import Code.Queries;
 import Code.Regex;
 import java.util.ArrayList;
 import java.sql.*;
@@ -39,12 +40,12 @@ public class OlympicGamesEdition {
     }
 
     public void setDate_of_Start(String Date_of_Start) {
-        if(Regex.regex(Date_of_Start))
+        if(Regex.isDateValid(Date_of_Start))
             this.Date_of_Start = Date_of_Start;
     }
 
     public void setDate_of_End(String Date_of_End) {
-        if(Regex.regex(Date_of_End))
+        if(Regex.isDateValid(Date_of_End))
             this.Date_of_End = Date_of_End;
     }
 
@@ -85,14 +86,12 @@ public class OlympicGamesEdition {
         this(1, 1896, 95, 1, "", "");
     }
     
-    public static ArrayList <OlympicGamesEdition> getAll()
+    public static ArrayList <OlympicGamesEdition> getAll() // gets all OlympicGames from the db
     {
         ArrayList <OlympicGamesEdition> ans = new ArrayList <>();
         try
         {
-            Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
-            Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM Olympic_Games");
+            ResultSet rs = new Queries("SELECT * FROM Olympic_Games").execute();
             while (rs.next())
             {
                 OlympicGamesEdition c = new OlympicGamesEdition();
@@ -104,7 +103,6 @@ public class OlympicGamesEdition {
                 c.setDate_of_End(rs.getString("Date_of_End"));
                 ans.add(c);
             }
-            conn.close();
         }
         catch (NullPointerException e)
         {
