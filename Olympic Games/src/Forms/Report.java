@@ -6,8 +6,13 @@ package Forms;
 
 import Code.Operations;
 import Code.Queries;
+import java.awt.print.*;
 import javax.swing.table.TableModel;
 import java.sql.*;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import print.*;
 
 /**
  *
@@ -589,10 +594,28 @@ public class Report extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Get a PrinterJob
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        
+        // Create a PageFormat
+        PageFormat pageFormat = printerJob.pageDialog(printerJob.defaultPage());
+        
+        // Set the Printable and PageFormat
+        ArrayList <String> textToPrint = getAllInfoFromTable(tblInfo);
+        printerJob.setPrintable(new MyPrintable(textToPrint), pageFormat);
+
+        // Show the print dialog
+        if (printerJob.printDialog()) {
+            try {
+                // Perform the print operation
+                printerJob.print();
+            } catch (PrinterException ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void initTable()
+    private void initTable() // initializes the report content
     {
         try
         {
@@ -623,15 +646,35 @@ public class Report extends javax.swing.JFrame {
                 }
             }
             m.setValueAt("Total", 450, 0);
-            m.setValueAt(totalCompetitors, 451, 1);
+            m.setValueAt(totalCompetitors, 450, 1);
         }
         catch (Exception ex)
         {
             System.err.println(ex.getMessage());
         }
-        TableModel m = tblInfo.getModel();
-        tblInfo.setSize(6, 3);
-        //m.addRow(new Object[]("First Name", "Last Name", "Nationality", ));
+    }
+    
+    private ArrayList <String> getAllInfoFromTable(JTable table)
+    {
+        ArrayList <String> ans = new ArrayList <> ();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int rowCount = model.getRowCount();
+        int colCount = model.getColumnCount();
+        for (int i = 0; i < rowCount; ++i)
+        {
+            String row = "";
+            for (int j = 0; j < colCount; ++j)
+            {
+                if (model.getValueAt(i, j) == null)
+                {
+                    row += "\t";
+                    continue;
+                }
+                row += model.getValueAt(i, j) + "\t";
+            }
+            ans.add(row);
+        }
+        return ans;
     }
     
     public static void Run() {
