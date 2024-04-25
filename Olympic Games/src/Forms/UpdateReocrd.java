@@ -5,10 +5,12 @@
 package Forms;
 import Code.Queries;
 import Code.Operations;
+import Code.Regex;
 import Entitys.Competitor;
 import java.util.ArrayList;
 import java.sql.*;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -260,6 +262,15 @@ public class UpdateReocrd extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
+        try
+        {
+            if (!Regex.checkScore(txtNewScore.getText())) throw new Exception("Regex exception");
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, "Invalid input", "Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println(ex.getMessage());
+        }
         String q = "UPDATE Record SET Record.Competitor_ID = " + getCompID(cbbComp) + ", Record.Score = " + txtNewScore.getText() + "\n" +
                     "WHERE (((Record.ID) = " + getRecordID(cbbDesc) + "));";
         System.out.println(q);

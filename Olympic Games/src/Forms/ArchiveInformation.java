@@ -270,7 +270,7 @@ public class ArchiveInformation extends javax.swing.JFrame {
         {
             String q = "SELECT Competitor.ID, Competitor.First_Name, Competitor.Last_Name, Nationality.Nationality_Name AS Израз1, Discipline.Discipline_Name\n" +
                         "FROM Nationality INNER JOIN (Discipline INNER JOIN (Competitor INNER JOIN Competitor_has_Discipline ON Competitor.ID = Competitor_has_Discipline.Competitor_ID) ON Discipline.ID = Competitor_has_Discipline.Discipline_ID) ON Nationality.ID = Competitor.Nationality\n" +
-                        "WHERE ((([Nationality].[Nationality_Name]) Like \"" + cbbChoose.getSelectedItem() + "\" ));";
+                        "WHERE (((Nationality.Nationality_Name) Like \"" + cbbChoose.getSelectedItem() + "\" ));";
             
             try
             {

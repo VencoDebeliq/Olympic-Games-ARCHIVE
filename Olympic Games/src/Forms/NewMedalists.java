@@ -5,6 +5,7 @@
 package Forms;
 import Code.Queries;
 import Code.Operations;
+import Code.Regex;
 import Entitys.Competitor;
 import javax.swing.JComboBox;
 import java.sql.*;
@@ -249,6 +250,7 @@ public class NewMedalists extends javax.swing.JFrame {
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
         try
         {
+            if (!Regex.checkOlympicID(txtOGID.getText()) || !Regex.checkMedalistDescription(txtDesc.getText())) throw new Exception("Regex exception");
             String q = "INSERT INTO Medal_Winners ( Competitor_ID, Olympic_Games_ID, Discipline_ID, Medal_Type_ID, Description )\n" +
                         "VALUES("
                     + getCompID(cbbComp) + ", "

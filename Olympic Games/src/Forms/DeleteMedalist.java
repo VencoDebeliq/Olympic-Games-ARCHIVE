@@ -5,9 +5,11 @@
 package Forms;
 import Code.Queries;
 import Code.Operations;
+import Code.Regex;
 import Entitys.Competitor;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 /**
  *
  * @author user
@@ -190,6 +192,16 @@ public class DeleteMedalist extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveMedalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveMedalsActionPerformed
+        try
+        {
+            if (!Regex.checkOlympicID(txtOGID.getText())) throw new Exception("Regex exception");
+            
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, "Invalid input", "Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println(ex.getMessage());
+        }
         String sql = "DELETE " +
                     "FROM Medal_Winners\n" +
                     "WHERE (((Medal_Winners.Competitor_ID)=" + getCompID(cbbComp) + ") AND ((Medal_Winners.Olympic_Games_ID)=" + txtOGID.getText() + "));";

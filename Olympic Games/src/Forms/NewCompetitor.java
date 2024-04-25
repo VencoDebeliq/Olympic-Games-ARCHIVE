@@ -5,6 +5,7 @@
 package Forms;
 import Code.Queries;
 import Code.Operations;
+import Code.Regex;
 import java.sql.*;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -245,6 +246,7 @@ public class NewCompetitor extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try
         {
+            if (!Regex.checkName(txtFirstName.getText()) || !Regex.checkName(txtLastName.getText())) throw new NumberFormatException("Regex exception");
             String q = "INSERT INTO Competitor(First_Name, Last_Name, Sex, Nationality, Date_of_birth)\n"
                 + "VALUES("
                 + "\"" + txtFirstName.getText() + "\", " 
@@ -258,6 +260,11 @@ public class NewCompetitor extends javax.swing.JFrame {
             openPageConfirm.setVisible(true);
             btnSave.setEnabled(false);
         }
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(this, "Invalid name input! Please enter a real name", "Alert", JOptionPane.ERROR_MESSAGE);
+            System.err.println(e.getMessage());
+        }   
         catch (Exception ex)
         {
             JOptionPane.showMessageDialog(this, "Invalid input (date should mm/dd/yyyy)", "Alert", JOptionPane.ERROR_MESSAGE);

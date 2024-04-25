@@ -12,7 +12,8 @@ import java.sql.*;
  */
 public class Queries {
     private String text;
-
+    private static Connection conn = null;
+    
     public void setText(String text) {
         this.text = text;
     }
@@ -38,19 +39,34 @@ public class Queries {
     
     public ResultSet execute() throws Exception
     {
-        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+        //Class.forName("com.mysql.jdbc.Driver");
+        //DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/olympic_games_archive", "root", "Npmg2022!");
+        //Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
         Statement s = conn.createStatement();
         ResultSet rs = s.executeQuery(getText());
-        conn.close();
         
         return rs;
     }
     
     public void executeUpdate() throws Exception
     {
-        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/olympic_games_archive", "root", "Npmg2022!");
+        //Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database\\Archive.accdb");
         Statement s = conn.createStatement();
         s.executeUpdate(getText());
-        conn.close();
+    }
+    
+    @Override
+    protected void finalize()
+    {
+        try
+        {
+            conn.close();
+        }
+        catch(Exception ex)
+        {
+            
+        }
     }
 }
